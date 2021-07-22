@@ -1,7 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
-const userRoute = require("./routes/user")
+const userRouter = require("./routes/user")
+const authRouter = require("./routes/auth")
 
 mongoose.connect('mongodb://localhost:27017/mern', {
     useNewUrlParser: true,
@@ -30,4 +31,9 @@ app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
 })
 
-app.use('/api/user', userRoute)
+app.use('/api/user', userRouter)
+app.use('/api', authRouter)
+
+app.get('*', (req, res) => {
+    res.send("404 Page not found")
+})

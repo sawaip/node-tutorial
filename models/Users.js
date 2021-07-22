@@ -17,18 +17,20 @@ const usersSchema = new mongoose.Schema({
         unique: true
 
     },
-    created_by: {type: Number, default: 1},
-    updated_by: {type: Number, default: 1},
-    
+    password: {
+        type: String
+    },
+    created_by: { type: Number, default: 1 },
+    updated_by: { type: Number, default: 1 },
     active: {
         type: Boolean,
         default: true
     },
-    avatar:{
-        type: String        
+    avatar: {
+        type: String
     }
 },
-{timestamps: true});
+    { timestamps: true });
 
 const Users = new mongoose.model("Users", usersSchema);
 
